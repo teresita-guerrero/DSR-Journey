@@ -1,2 +1,2 @@
 # DSR-Journey
-Exercises and useful material for Data Science enthusiasts
+Exercises and useful material for Data Science enthusiasts.
