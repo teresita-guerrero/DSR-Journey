@@ -5,5 +5,12 @@
             "https://www.machinelearningplus.com/python/101-numpy-exercises-python/",
             "http://www.labri.fr/perso/nrougier/teaching/numpy.100/"
         ]
+    },
+    {
+        "file": "From_1_to_100_Pandas_Exercises.ipynb",
+        "sources": [
+            "https://www.machinelearningplus.com/python/101-pandas-exercises-python/"
+        ]
     }
+
 ]
