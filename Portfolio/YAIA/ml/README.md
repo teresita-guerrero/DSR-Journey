@@ -25,8 +25,8 @@ corpus for Supervised Email Summarization AAAI08 EMAIL Workshop, Chicago, USA, 2
 
 ### Set the environment
 
-- Once downloaded the data, extract the BC3 corpus inside ml/Resources/bc3/
-directory.
+- Once downloaded the data, create the directory ml/Resources/bc3/ and extracts 
+the BC3 corpus inside.
 
 #### The Jupyter Notebook
 

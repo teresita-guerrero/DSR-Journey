@@ -76,6 +76,6 @@ http://localhost:8080
 The machine learning process was added to this repo. You can play with it by 
 changing the features, parameters and so on.
 
- _Follow the directions: [here](/ml/)_
+ _Follow the directions: [here](/Portfolio/YAIA/ml/)_
 
 

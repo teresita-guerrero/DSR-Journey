@@ -10,4 +10,4 @@ Email Summarizer
 ### Python Materials
 
 > A list of useful exercises to master Python for Data Science.
-- _take a look [here](/PythonMaterials/Notebooks/)'
+- _take a look [here](/PythonMaterials/Notebooks/)_
