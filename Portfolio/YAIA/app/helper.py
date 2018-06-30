@@ -8,6 +8,7 @@ import pandas as pd
 import nltk
 from email_endpoints import apiRequestMailByID
 import re
+import numpy as np
 
 
 def singleSummary(threadID, email):
@@ -17,17 +18,23 @@ def singleSummary(threadID, email):
 
 def threadSummary(thread):
     # Processing the data
-    eData = getDataFrameBase2(thread)
+    eData = getDataFrameBase(thread)
     tData = dataProcessPipeline(eData)
     path = "ml_models/"
 
     # choose the model to apply
     # 1.- bagging_model.pkl
+    # 2.- dt_model.pkl
+    # 3.- rf_model.pkl
+    # 4.- svm_model.pkl
+    # 5.- gnb_model.pkl
 
     # default: bagging_model.pkl
     modelName = "bagging_model.pkl"
     prediction = predictingSummary(path, modelName, tData)
     predictedSentences = getPredictedSentences(prediction, 1, eData)
+    predictedSentences.drop_duplicates(subset=["sentence_content"], inplace=True)
+
     summary = [row["sentence_content"].capitalize()
                for _, row in predictedSentences.iterrows()]
 
@@ -35,37 +42,6 @@ def threadSummary(thread):
 
 
 def getDataFrameBase(thread):
-
-    # defining the base dataframe
-    eData = pd.DataFrame(columns=["thread_num", "id", "name", "received",
-                                  "from", "to", "subject", "sentence_id",
-                                  "sentence_content"])
-    emailNumber = 1
-    for key, value in thread.items():
-        # tokenize the sentences
-        normalizedSentences = tokenizeEmail(emailNumber,
-                                            value["message_content"])
-
-        sentenceNumber = 0.1
-        for sentence in normalizedSentences:
-            eData = eData.append({
-                "thread_num": 1,
-                "id": value["thread_num"],
-                "name": value["subject"],
-                "received": value["received"],
-                "from": value["from"],
-                "to": value["to"],
-                "subject": value["subject"],
-                "sentence_id": emailNumber + sentenceNumber,
-                "sentence_content": sentence
-            }, ignore_index=True)
-
-            sentenceNumber += 0.1
-        emailNumber += 1
-
-    return eData
-
-def getDataFrameBase2(thread):
     # defining the base dataframe
     eData = pd.DataFrame(columns=["thread_num", "id", "name", "received",
                                   "from", "to", "subject", "sentence_id",
@@ -82,9 +58,16 @@ def getDataFrameBase2(thread):
         # tokenize the sentences
         normalizedSentences = tokenizeEmail(mCleaned)
 
+        replySentence = False
         sentenceNumber = 0.1
         for sentence in normalizedSentences:
-            if sentence[0]!= ">":
+            # ToDo: move this to a more fancy cleaning function
+            for word in sentence:
+                replySentence = np.isin(">", word)
+                if replySentence:
+                    break
+
+            if replySentence == False:
                 eData = eData.append({
                     "thread_num": 1,
                     "id": m["id"],

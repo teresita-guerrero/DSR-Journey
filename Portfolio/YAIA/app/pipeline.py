@@ -45,7 +45,7 @@ def getPredictedSentences(predClass, thread, eData):
     tData = pd.concat([tData, pred], axis=1)
 
     return tData.loc[(tData["predicted"] == 1) & (
-                tData["thread_num"] == thread)].iloc[:, [8]]
+                tData["thread_num"] == thread)].iloc[:, [3,4,8]]
 
 
 def sentencePosition(eData):
