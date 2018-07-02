@@ -1,0 +1,9 @@
+{
+  "email": {
+    "service_name": "gmail",
+    "service_version": "v1",
+    "service_scopes": [
+      "https://www.googleapis.com/auth/gmail.readonly"
+    ]
+  }
+}

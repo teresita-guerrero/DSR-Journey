@@ -3,7 +3,7 @@
 
 > "**Y**et **A**nother **I**ntelligent **A**pproach"
 
-##### Overview
+#### Overview
 
 Email is playing an important role on most almost everybody’s lives. It is an easy and a common form of communication nowadays. However, people is constantly receiving a significant amount of emails that takes also significant amount of time to read.
 The technological advances have brought a lot of changes in people’s life style. With the arrival of the IoT, for example, several wearables and devices send feedback, alerts, and notifications to users through emails.
@@ -21,5 +21,61 @@ All this, is causing an email overload that will continue increasing. Email summ
 
 ##### Problem
 
-Email overload: people is constantly receiving a significant amount of emails that takes also significant amount of time to read.
+Email overload: people is constantly receiving a significant amount of emails that take also significant amount of time to read.
+
+#### Installation
+
+##### Requirements
+   - Python 3
+   - Conda 4.4.10 or later
+   - pip 10.0.1
+   
+##### Download or clone YAIA
+```
+git clone https://github.com/teresita-guerrero/DSR-Journey.git
+```
+
+##### The virtual environment
+
+Open a terminal and go to the YAIA directory:
+```
+cd DSR-Journey/Portfolio/YAIA
+```
+
+- Create a virtual environment:
+```
+conda env create -f yaia.yml
+```
+- Activate the virtual environment: 
+```
+source activate yaia
+```
+- Set the environment variables. This is for development purposes 
+(as the app stills in development this step is required):
+```
+. ./setup.sh
+```
+
+##### Running the application
+
+- Go to the app directory:
+```
+cd portfolio/YAIA/app
+```
+- Run the API:
+```
+FLASK_APP=api.py FLASK_DEBUG=1 python -m flask run --port=8080
+```
+- Go to the browser and type:
+```
+http://localhost:8080
+```
+
+#### The ML Script
+
+The machine learning process was added to this repo. You can play with it by 
+changing the features, parameters and so on.
+
+ _Follow the directions: [here](/Portfolio/YAIA/ml/)_
+
 
