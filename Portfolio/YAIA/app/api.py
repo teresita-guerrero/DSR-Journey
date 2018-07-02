@@ -8,6 +8,7 @@ from email_endpoints import *
 from helper import *
 from flask import render_template
 from flask_bootstrap import Bootstrap
+from flask import request
 
 
 app = flask.Flask(__name__)
@@ -59,12 +60,15 @@ def getThreads():
 def getThreadMails(threadID):
     emailList = apiRequestThreadMails(threadID)
 
+    listen = request.args.get('Listen')
+
     if len(emailList.get_json()) <=1:
         summary = singleSummary(threadID, emailList.get_json())
     else:
         summary = threadSummary(emailList.get_json())
+        print(summary)
 
-    return render_template('summary.html', summary=summary)
+    return render_template('summary.html', summary=summary, listen=listen)
 
 
 # Authorize the YAIA app to access google user info

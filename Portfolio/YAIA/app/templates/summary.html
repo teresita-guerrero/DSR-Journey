@@ -10,10 +10,11 @@
         {% for sentence in summary['summary'] %}
             <p style="font-size:14px; overflow-wrap: break-word; word-wrap: break-word; hyphens: auto;">
                 {{ sentence }}
+                {% if listen == 'True' %}
+                <script type="text/javascript">responsiveVoice.speak('{{sentence}}');</script>
+                {% endif %}
             </p>
         {% endfor %}
         </div>
-        <!-- include an if statement here -->
-        <script type="text/javascript">responsiveVoice.speak("Hello world");</script>
 	</div>
 {% endblock %}
